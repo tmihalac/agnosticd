@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: feast-deployment
+  namespace: '{{ ocp4_workload_example_dedicated_cluster_namespace }}'
+  labels:
+    app: feast
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: feast
+  template:
+    metadata:
+      labels:
+        app: feast
+    spec:
+      containers:
+        - name: feast
+          image: 'quay.io/tmihalac/feast:latest'
